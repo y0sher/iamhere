@@ -7,7 +7,7 @@
   "repository": {
   	"type": "git",
 	"url": "https://github.com/y0sher/iamhere"
-  }
+  },
   "license": "APACHE",
   "bin": {
        "iamhere": "./index.js"
