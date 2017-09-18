@@ -15,3 +15,5 @@ or
 ```
 npm i -g iamhere
 ```
+
+you will be promoted to input your phone number. the software will contact the servers to identify your details and save it to report every time.
