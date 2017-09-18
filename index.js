@@ -3,7 +3,7 @@ const https = require('http');
 const fs = require('fs');
 const util = require('util');
 const ReportTypes = { "enter" : 1, "exit": 2 };
-const InitResults = { OK : 0, ERROR: 2  }
+const InitResults = { OK : 0, ERROR: 2, NO_MORE_INITS: 3  }
 
 function addZeros(s) { if (s.toString().length == 1) s = '0' + s; return s;  }
 var date = new Date();
@@ -14,9 +14,10 @@ var dateText = addZeros(date.getDate()) + "/" + addZeros((date.getMonth() + 1)) 
 
 let config;
 
-function saveConfig(config) {
-    console.log("Saveing config " + JSON.stringify(config));
-    fs.writeFileSync('./config.json', JSON.stringify(config));
+function saveConfig(saveconfig) {
+    console.log("Saveing config " + JSON.stringify(saveconfig));
+    config = saveconfig;
+    fs.writeFileSync('./config.json', JSON.stringify(saveconfig));
 }
 
 function report(config, type) {
@@ -44,8 +45,6 @@ function init(phone) {
   console.log(`getting ${phone}'s login details..`);
   https.get(`http://62.219.213.37:8000/INITTEL/A${phone}.txt`, (resp) => {
     let data = '';
-
-    console.log(resp.headers);
     // A chunk of data has been recieved.
     resp.on('data', (chunk) => {
       data += chunk;
@@ -54,11 +53,12 @@ function init(phone) {
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
       let analyzed = analyzeInit(data);
-      if (analyzed.code == InitResults.OK) {
+      if (analyzed.code != InitResults.ERROR) {
         saveConfig(analyzed);
-        console.log`Saved your phone number config.`
+        console.log(`Saved your phone number config please run again`);
+        process.exit(-1);
       } 
-      else console.log`We were unable to retreive your phone data. ERR CODE: ${analyzed.code} `
+      else console.log(`We were unable to retreive your phone data. ERR CODE: ${analyzed.code} `);
     });
   
   }).on("error", (err) => {
@@ -68,13 +68,13 @@ function init(phone) {
 }
 
 function analyzeInit(initData) {
-  let lines = initData.split('\n\r').map(function (line) { return line.trim(); });
+  let lines = initData.split('\n').map(function (line) { return line.trim(); });
   if (lines.length < 3) return -1;
 
     let object = {};
     object.code = lines[0];
 
-    if (object.code == InitResults.OK) {
+    if (object.code == InitResults.OK || object.code == InitResults.NO_MORE_INITS) {
       object.company = lines[1];
       object.user = lines[2];
     }
@@ -88,16 +88,17 @@ catch(e) {
   console.log("Please input your phone for a one time login:");
   process.stdin.on('data', function (text) {
     let phone = text.toString().trim();
-    console.log(phone);
     init(phone);
   });
 }
-if (config) {
-    if (process.argv.length <= 2) {
-      console.log("Usage : report enter");
-      console.log("        report exit")
-      process.exit(-1);
-    } else {
-      report(config, process.argv[2]);
-    }
+finally {
+    if (config) {
+        if (process.argv.length <= 2) {
+          console.log("Usage : report enter");
+          console.log("        report exit")
+          process.exit(-1);
+        } else {
+          report(config, process.argv[2]);
+        }
+  }
 }
