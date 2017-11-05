@@ -1,0 +1,104 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.15.12
+3 info using node@v6.10.2
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/ysh/Dev/iamhere/iamhere',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/ysh/.npm/iamhere/0.0.3/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/ysh/.npm correctMkdir not in flight; initializing
+10 verbose tar pack [ '/Users/ysh/.npm/iamhere/0.0.3/package.tgz',
+10 verbose tar pack   '/Users/ysh/Dev/iamhere/iamhere' ]
+11 verbose tarball /Users/ysh/.npm/iamhere/0.0.3/package.tgz
+12 verbose folder /Users/ysh/Dev/iamhere/iamhere
+13 info prepublish iamhere@0.0.3
+14 verbose addLocalTarball adding from inside cache /Users/ysh/.npm/iamhere/0.0.3/package.tgz
+15 verbose correctMkdir /Users/ysh/.npm correctMkdir not in flight; initializing
+16 silly cache afterAdd iamhere@0.0.3
+17 verbose afterAdd /Users/ysh/.npm/iamhere/0.0.3/package/package.json not in flight; writing
+18 verbose correctMkdir /Users/ysh/.npm correctMkdir not in flight; initializing
+19 verbose afterAdd /Users/ysh/.npm/iamhere/0.0.3/package/package.json written
+20 silly publish { name: 'iamhere',
+20 silly publish   version: '0.0.3',
+20 silly publish   description: 'Presence clock command line utility that works with jbClock. made for me and my office mates :)',
+20 silly publish   main: 'index.js',
+20 silly publish   author: { name: 'y0sher' },
+20 silly publish   repository:
+20 silly publish    { type: 'git',
+20 silly publish      url: 'git+https://github.com/y0sher/iamhere.git' },
+20 silly publish   license: 'APACHE',
+20 silly publish   bin: { iamhere: './index.js' },
+20 silly publish   readme: '# iamhere\nReport work presence from the command line. suitable for me and my teammates. might extend with plugins capability in the future.\n\n# Why ?\nI had trouble to remember reporting my presence every morning, this ended up with my boss posting a big note over my station : "Yosher, DID YOU REPORT TODAY?".\nIt helped for 3 days and I failed to report yet again.\nSo I wrote this small command line utility to make it easy and fun for me and my teammates to report from the command line.\nI might expend it to work with other presence clocks in the future and schedule reports.\n\n# Install \n```\nyarn global add iamhere\n```\nor \n```\nnpm i -g iamhere\n```\n\nyou will be promoted to input your phone number. the software will contact the servers to identify your details and save it to report every time.\n',
+20 silly publish   readmeFilename: 'README.md',
+20 silly publish   gitHead: '10317df3c40fcc9700782a3994e5d66fd7a901f5',
+20 silly publish   bugs: { url: 'https://github.com/y0sher/iamhere/issues' },
+20 silly publish   homepage: 'https://github.com/y0sher/iamhere#readme',
+20 silly publish   _id: 'iamhere@0.0.3',
+20 silly publish   scripts: {},
+20 silly publish   _shasum: 'a79016efb78e323f4350a7fd26f16ffa1e887fad',
+20 silly publish   _from: '.' }
+21 verbose getPublishConfig undefined
+22 silly mapToRegistry name iamhere
+23 silly mapToRegistry using default registry
+24 silly mapToRegistry registry https://registry.npmjs.org/
+25 silly mapToRegistry data Result {
+25 silly mapToRegistry   raw: 'iamhere',
+25 silly mapToRegistry   scope: null,
+25 silly mapToRegistry   name: 'iamhere',
+25 silly mapToRegistry   rawSpec: '',
+25 silly mapToRegistry   spec: 'latest',
+25 silly mapToRegistry   type: 'tag' }
+26 silly mapToRegistry uri https://registry.npmjs.org/iamhere
+27 verbose publish registryBase https://registry.npmjs.org/
+28 silly publish uploading /Users/ysh/.npm/iamhere/0.0.3/package.tgz
+29 verbose request uri https://registry.npmjs.org/iamhere
+30 verbose request sending authorization for write operation
+31 info attempt registry request try #1 at 10:36:24 AM
+32 verbose request using bearer token for auth
+33 verbose request id 0c6b4604b23d44c7
+34 http request PUT https://registry.npmjs.org/iamhere
+35 http 403 https://registry.npmjs.org/iamhere
+36 verbose headers { 'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=300',
+36 verbose headers   'content-length': '91',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   date: 'Sun, 05 Nov 2017 08:36:24 GMT',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   connection: 'keep-alive',
+36 verbose headers   'x-served-by': 'cache-mad9432-MAD',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1509870983.237108,VS0,VE1430',
+36 verbose headers   vary: 'Accept-Encoding, Accept' }
+37 verbose request invalidating /Users/ysh/.npm/registry.npmjs.org/iamhere on PUT
+38 error publish Failed PUT 403
+39 verbose stack Error: You cannot publish over the previously published version 0.0.3. : iamhere
+39 verbose stack     at makeError (/Users/ysh/.config/yarn/global/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+39 verbose stack     at CachingRegistryClient.<anonymous> (/Users/ysh/.config/yarn/global/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+39 verbose stack     at Request._callback (/Users/ysh/.config/yarn/global/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+39 verbose stack     at Request.self.callback (/Users/ysh/.config/yarn/global/node_modules/npm/node_modules/request/request.js:187:22)
+39 verbose stack     at emitTwo (events.js:106:13)
+39 verbose stack     at Request.emit (events.js:191:7)
+39 verbose stack     at Request.<anonymous> (/Users/ysh/.config/yarn/global/node_modules/npm/node_modules/request/request.js:1044:10)
+39 verbose stack     at emitOne (events.js:96:13)
+39 verbose stack     at Request.emit (events.js:188:7)
+39 verbose stack     at IncomingMessage.<anonymous> (/Users/ysh/.config/yarn/global/node_modules/npm/node_modules/request/request.js:965:12)
+40 verbose statusCode 403
+41 verbose pkgid iamhere
+42 verbose cwd /Users/ysh/Dev/iamhere/iamhere
+43 error Darwin 16.5.0
+44 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+45 error node v6.10.2
+46 error npm  v2.15.12
+47 error code E403
+48 error You cannot publish over the previously published version 0.0.3. : iamhere
+49 error If you need help, you may report this error at:
+49 error     <https://github.com/npm/npm/issues>
+50 verbose exit [ 1, true ]
