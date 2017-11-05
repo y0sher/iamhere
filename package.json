@@ -1,6 +1,6 @@
 {
   "name": "iamhere",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Presence clock command line utility that works with jbClock. made for me and my office mates :)",
   "main": "index.js",
   "author": "y0sher",
