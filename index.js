@@ -4,6 +4,7 @@ const fs = require('fs');
 const util = require('util');
 const ReportTypes = { "enter" : 1, "exit": 2 };
 const InitResults = { OK : 0, ERROR: 2, NO_MORE_INITS: 3  }
+const configPath = "~/.iamconfig.json";
 
 function addZeros(s) { if (s.toString().length == 1) s = '0' + s; return s;  }
 var date = new Date();
@@ -17,7 +18,7 @@ let config;
 function saveConfig(saveconfig) {
     console.log("Saveing config " + JSON.stringify(saveconfig));
     config = saveconfig;
-    fs.writeFileSync('./config.json', JSON.stringify(saveconfig));
+    fs.writeFileSync(configPath, JSON.stringify(saveconfig));
 }
 
 function report(config, type) {
@@ -82,7 +83,7 @@ function analyzeInit(initData) {
 }
 
 try {
-  config = JSON.parse(fs.readFileSync('./config.json'));
+  config = JSON.parse(fs.readFileSync(configPath));
 } 
 catch(e) {
   console.log("Please input your phone for a one time login:");
