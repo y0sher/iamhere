@@ -1,3 +1,8 @@
+## NOTE : 
+this will not work or continued since I don't work there anymore and figured out I hate the concept of presence clocks :).
+### So I hope you'll never use it.
+
+
 # iamhere
 Report work presence from the command line. suitable for me and my teammates. might extend with plugins capability in the future.
 
